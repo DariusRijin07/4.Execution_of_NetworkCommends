@@ -1,4 +1,7 @@
 # 4.Execution_of_NetworkCommands
+### NAME: DARIUS RIJIN I 
+### REG.NO:212223230037
+
 ## AIM :Use of Network commands in Real Time environment
 ## Software : Command Prompt And Network Protocol Analyzer
 ## Procedure: To do this EXPERIMENT- follows these steps:
@@ -26,7 +29,53 @@ This commands includes
 • Other IP Commands e.g. show ip route etc.
 <BR>
 
-## Output
+## PROGRAM
+
+## Ping command
+## Client
+```
+import socket 
+from pythonping import ping 
+s=socket.socket() 
+s.bind(('localhost',8000)) 
+s.listen(5) 
+c,addr=s.accept() 
+while True: 
+    hostname=c.recv(1024).decode() 
+    try: 
+        c.send(str(ping(hostname, verbose=False)).encode()) 
+    except KeyError: 
+        c.send("Not Found".encode())
+```
+## Server
+```
+import socket 
+s=socket.socket() 
+s.connect(('localhost',8000)) 
+while True: 
+    ip=input("Enter the website you want to ping ") 
+    s.send(ip.encode()) 
+    print(s.recv(1024).decode())
+```
+## Tranceroute command
+```
+from scapy.all import* 
+target = ["www.google.com"] 
+result, unans = traceroute(target,maxttl=32) 
+print(result,unans)
+```
+## OUTPUT
+## Ping command
+## Client
+![image](https://github.com/DariusRijin07/4.Execution_of_NetworkCommends/assets/138849120/d7f7d6ef-eeac-42cb-b77f-6ecec6eb78bc)
+
+
+## Server
+![image](https://github.com/DariusRijin07/4.Execution_of_NetworkCommends/assets/138849120/f541439c-3596-4956-82e8-01de0b595ae0)
+
+
+## Tranceroute command
+![image](https://github.com/DariusRijin07/4.Execution_of_NetworkCommends/assets/138849120/ae8d64ab-d12a-44f8-bd60-bd98bf32b1c6)
 
 ## Result
 Thus Execution of Network commands Performed 
